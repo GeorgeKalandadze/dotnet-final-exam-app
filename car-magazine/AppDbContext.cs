@@ -10,11 +10,13 @@ namespace car_magazine
         public AppDbContext()
             : base("name=AppDbContext")
         {
+            
         }
 
         public DbSet<Category> categories { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,6 +39,19 @@ namespace car_magazine
                 .Property(e => e.Password)
                 .HasMaxLength(50)
                 .IsRequired();
+
+            modelBuilder.Entity<UserRole>()
+            .HasKey(ur => new { ur.UserId, ur.RoleId });
+
+            modelBuilder.Entity<UserRole>()
+                .HasRequired(ur => ur.User)
+                .WithMany(u => u.UserRoles)
+                .HasForeignKey(ur => ur.UserId);
+
+            modelBuilder.Entity<UserRole>()
+                .HasRequired(ur => ur.Role)
+                .WithMany(r => r.UserRoles)
+                .HasForeignKey(ur => ur.RoleId);
         }
     }
 }
