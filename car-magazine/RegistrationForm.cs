@@ -36,30 +36,24 @@ namespace car_magazine
             string password = passwordTextBox.Text;
             string confirmPassword = confirmPasswordTextBox.Text;
 
-            // Validate input
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) ||  string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
             {
                 MessageBox.Show("Please enter all required fields.");
                 return;
             }
 
-            // Validate email format
             if (!IsValidEmail(email))
             {
                 MessageBox.Show("Invalid email format.");
                 return;
             }
 
-            // Check if the passwords match
             if (password != confirmPassword)
             {
                 MessageBox.Show("Passwords do not match. Please enter the same password in both fields.");
                 return;
             }
 
-         
-
-            // Save the new user
             var newUser = new User { Name = name, Email = email, Password = password };
             dbContext.Users.Add(newUser);
             dbContext.SaveChanges();
