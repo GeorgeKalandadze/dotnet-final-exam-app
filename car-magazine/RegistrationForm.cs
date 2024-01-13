@@ -26,7 +26,7 @@ namespace car_magazine
 
         private void RegistrationForm_Load(object sender, EventArgs e)
         {
-            var categories = dbContext.Users.ToList();
+            var users = dbContext.Users.ToList();
         }
 
         private void RegisterButton_Click(object sender, EventArgs e)

@@ -17,7 +17,8 @@ namespace car_magazine
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
            
-            Application.Run(new RegistrationForm());
+            /*Application.Run(new RegistrationForm());*/
+            Application.Run(new LoginForm());
         }
     }
 }
