@@ -18,6 +18,11 @@ namespace car_magazine
             InitializeComponent();
         }
 
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -58,6 +63,22 @@ namespace car_magazine
         private bool VerifyPassword(string enteredPassword, string storedPassword)
         {
             return enteredPassword == storedPassword;
+        }
+
+        
+
+      /*  private void RegisterLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            RegistrationForm registrationForm = new RegistrationForm();
+            registrationForm.Show();
+            this.Hide();
+        }*/
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            RegistrationForm registrationForm = new RegistrationForm();
+            registrationForm.Show();
+            this.Hide();
         }
     }
 }
