@@ -12,27 +12,32 @@ namespace car_magazine
 {
     public partial class CrudForm : Form
     {
+        private readonly CarCrudService carCrudService;
+
         public CrudForm()
         {
             InitializeComponent();
+            carCrudService = new CarCrudService(new AppDbContext());
+
         }
 
-        private void UpdateUserLabel()
-        {
-            // Access the current user information from the CurrentUser class
-            User loggedInUser = CurrentUser.LoggedInUser;
+        /*  private void UpdateUserLabel()
+          {
+              User loggedInUser = CurrentUser.LoggedInUser;
+              if (loggedInUser != null)
+              {
+                  label9.Text = $"Logged in as: {loggedInUser.Email}";
+              }
+              else
+              {
+                  label9.Text = "Not logged in";
+              }
+          }*/
 
-            // Check if a user is logged in
-            if (loggedInUser != null)
-            {
-                // Display the user's email in label9
-                label9.Text = $"Logged in as: {loggedInUser.Email}";
-            }
-            else
-            {
-                // If no user is logged in, you can display a default message or leave it empty
-                label9.Text = "Not logged in";
-            }
+        private void LoadUserCars()
+        {
+            var userCars = carCrudService.GetUserCars(CurrentUser.LoggedInUser.Id);
+            dataGridView1.DataSource = userCars;
         }
 
         private void CrudForm_Load(object sender, EventArgs e)
@@ -41,14 +46,15 @@ namespace car_magazine
             {
                 var categories = dbContext.Categories.ToList();
 
-                comboBox1.Items.Clear();
+                category_combobox.Items.Clear();
                 foreach (var category in categories)
                 {
-                    comboBox1.Items.Add(category.Name);
+                    category_combobox.Items.Add(category.Name);
                 }
             }
+            LoadUserCars();
 
-            UpdateUserLabel();
+            /*UpdateUserLabel();*/
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -76,11 +82,28 @@ namespace car_magazine
 
         }
 
-        private void label9_Click(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string model = model_textbox.Text;
+                decimal price = decimal.Parse(price_textbox.Text);
+                int mileage = Convert.ToInt32(mileage_textbox.Text);
+                string vinCode = vin_textbox.Text;
+                int year = dateTimePicker1.Value.Year;
+                string categoryName = category_combobox.SelectedItem?.ToString();
 
+                carCrudService.CreateCar(model, price, mileage, vinCode, year, categoryName, CurrentUser.LoggedInUser.Id);
+
+                MessageBox.Show("Car created successfully!");
+                carCrudService.GetUserCars(CurrentUser.LoggedInUser.Id);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show($"Error creating car: {ex.Message}");
+            }
         }
-
 
     }
 }
