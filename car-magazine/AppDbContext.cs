@@ -10,7 +10,7 @@ namespace car_magazine
         public AppDbContext()
             : base("name=AppDbContext")
         {
-            
+            Database.SetInitializer(new DataSeeder());
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -21,7 +21,7 @@ namespace car_magazine
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>()
-                .Property(e => e.name)
+                .Property(e => e.Name)
                 .IsUnicode(false);
 
 

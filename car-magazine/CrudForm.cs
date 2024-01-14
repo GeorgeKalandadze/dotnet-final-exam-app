@@ -17,6 +17,20 @@ namespace car_magazine
             InitializeComponent();
         }
 
+        private void CrudForm_Load(object sender, EventArgs e)
+        {
+            using (var dbContext = new AppDbContext())
+            {
+                var categories = dbContext.Categories.ToList();
+
+                comboBox1.Items.Clear();
+                foreach (var category in categories)
+                {
+                    comboBox1.Items.Add(category.Name);
+                }
+            }
+        }
+
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -31,5 +45,17 @@ namespace car_magazine
         {
 
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

@@ -8,10 +8,11 @@ namespace car_magazine
 {
     public class Category
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long id { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long Id { get; set; }
 
         [StringLength(50)]
-        public string name { get; set; }
+        public string Name { get; set; }
     }
 }

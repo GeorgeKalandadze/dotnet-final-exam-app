@@ -63,6 +63,7 @@
     <Compile Include="CrudForm.Designer.cs">
       <DependentUpon>CrudForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataSeeder.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="LoginForm.cs">
