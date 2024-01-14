@@ -57,8 +57,11 @@ namespace car_magazine
             var newUser = new User { Name = name, Email = email, Password = password };
             dbContext.Users.Add(newUser);
             dbContext.SaveChanges();
-
+            CurrentUser.SetLoggedInUser(newUser);
             MessageBox.Show("Registration successful!");
+            CrudForm crudForm = new CrudForm();
+            crudForm.Show();
+            this.Hide();
             this.Close();
         }
 

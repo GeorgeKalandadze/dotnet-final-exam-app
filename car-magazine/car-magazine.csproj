@@ -56,7 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
+    <Compile Include="Car.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="CurrentUser.cs" />
     <Compile Include="CrudForm.cs">
       <SubType>Form</SubType>
     </Compile>

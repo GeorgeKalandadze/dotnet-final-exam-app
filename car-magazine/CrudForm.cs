@@ -17,6 +17,24 @@ namespace car_magazine
             InitializeComponent();
         }
 
+        private void UpdateUserLabel()
+        {
+            // Access the current user information from the CurrentUser class
+            User loggedInUser = CurrentUser.LoggedInUser;
+
+            // Check if a user is logged in
+            if (loggedInUser != null)
+            {
+                // Display the user's email in label9
+                label9.Text = $"Logged in as: {loggedInUser.Email}";
+            }
+            else
+            {
+                // If no user is logged in, you can display a default message or leave it empty
+                label9.Text = "Not logged in";
+            }
+        }
+
         private void CrudForm_Load(object sender, EventArgs e)
         {
             using (var dbContext = new AppDbContext())
@@ -29,6 +47,8 @@ namespace car_magazine
                     comboBox1.Items.Add(category.Name);
                 }
             }
+
+            UpdateUserLabel();
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -56,6 +76,11 @@ namespace car_magazine
 
         }
 
-        
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

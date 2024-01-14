@@ -33,22 +33,21 @@ namespace car_magazine
             string email = emailTextBox.Text;
             string password = passwordTextBox.Text;
 
-            // Validate input
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Please enter both email and password.");
                 return;
             }
 
-            // Retrieve the user from the database based on the entered email
             var user = dbContext.Users.FirstOrDefault(u => u.Email == email);
 
             if (user != null && VerifyPassword(password, user.Password))
             {
+                CurrentUser.SetLoggedInUser(user);
                 MessageBox.Show("Login successful!");
-               /* MainForm mainForm = new MainForm();
-                mainForm.Show();
-                this.Hide();*/
+                CrudForm crudForm = new CrudForm();
+                crudForm.Show();
+                this.Hide();
             }
             else
             {
