@@ -28,7 +28,8 @@ namespace car_magazine
                 context.SaveChanges();
             }
             /*Application.Run(new RegistrationForm());*/
-            Application.Run(new LoginForm());
+            /*Application.Run(new LoginForm());*/
+            Application.Run(new CrudForm());
         }
     }
 }

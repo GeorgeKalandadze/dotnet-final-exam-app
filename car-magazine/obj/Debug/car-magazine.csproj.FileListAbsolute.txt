@@ -15,3 +15,4 @@ C:\Users\user\OneDrive\Desktop\car-magazine\car-magazine\obj\Debug\car-magazine.
 C:\Users\user\OneDrive\Desktop\car-magazine\car-magazine\obj\Debug\car-magazine.pdb
 C:\Users\user\OneDrive\Desktop\car-magazine\car-magazine\obj\Debug\car_magazine.RegistrationForm.resources
 C:\Users\user\OneDrive\Desktop\car-magazine\car-magazine\obj\Debug\car_magazine.LoginForm.resources
+C:\Users\user\OneDrive\Desktop\car-magazine\car-magazine\obj\Debug\car_magazine.CrudForm.resources
